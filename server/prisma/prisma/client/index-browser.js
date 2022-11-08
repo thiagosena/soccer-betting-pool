@@ -88,11 +88,34 @@ Prisma.NullTypes = {
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 function makeEnum(x) { return x; }
 
+exports.Prisma.GameScalarFieldEnum = makeEnum({
+  id: 'id',
+  date: 'date',
+  firstTeamCountryCode: 'firstTeamCountryCode',
+  secondTeamCountryCode: 'secondTeamCountryCode'
+});
+
+exports.Prisma.GuessScalarFieldEnum = makeEnum({
+  id: 'id',
+  firstTeamPoints: 'firstTeamPoints',
+  secondTeamPoints: 'secondTeamPoints',
+  createdAt: 'createdAt',
+  gameId: 'gameId',
+  participantId: 'participantId'
+});
+
+exports.Prisma.ParticipantScalarFieldEnum = makeEnum({
+  id: 'id',
+  userId: 'userId',
+  poolId: 'poolId'
+});
+
 exports.Prisma.PoolScalarFieldEnum = makeEnum({
   id: 'id',
   title: 'title',
   code: 'code',
-  createAt: 'createAt'
+  createAt: 'createAt',
+  ownerId: 'ownerId'
 });
 
 exports.Prisma.SortOrder = makeEnum({
@@ -104,9 +127,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserScalarFieldEnum = makeEnum({
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  avatarUrl: 'avatarUrl',
+  createdAt: 'createdAt'
+});
+
 
 exports.Prisma.ModelName = makeEnum({
-  Pool: 'Pool'
+  Pool: 'Pool',
+  Participant: 'Participant',
+  User: 'User',
+  Game: 'Game',
+  Guess: 'Guess'
 });
 
 /**
