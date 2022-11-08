@@ -1,11 +1,11 @@
-import { Button as ButtonNativeBase, Text, IButtonProps } from 'native-base';
+import {Button as ButtonNativeBase, IButtonProps, Text} from 'native-base';
 
 interface Props extends IButtonProps {
   title: string;
   type?: 'PRIMARY' | 'SECONDARY';
 }
 
-export function Button({ title, type = 'PRIMARY', ...rest }: Props) {
+export function Button({title, type = 'PRIMARY', ...rest}: Props) {
   return (
     <ButtonNativeBase
       w="full"
@@ -17,13 +17,13 @@ export function Button({ title, type = 'PRIMARY', ...rest }: Props) {
         bg: type === 'SECONDARY' ? 'red.700' : 'yellow.700',
       }}
       _loading={{
-        _spinner: {color: 'black'}
+        _spinner: {color: 'black'},
       }}
       {...rest}
     >
       <Text
-        fontSize='sm'
-        fontFamily='heading'
+        fontSize="sm"
+        fontFamily="heading"
         color={type === 'SECONDARY' ? 'white' : 'black'}
       >{title}</Text>
     </ButtonNativeBase>
