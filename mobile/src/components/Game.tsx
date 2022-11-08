@@ -3,6 +3,8 @@ import { Check, X } from 'phosphor-react-native';
 import { getName } from 'country-list';
 
 import { Team } from './Team';
+import dayjs from 'dayjs';
+import ptBR from 'dayjs/locale/pt-br';
 
 interface GuessProps {
   id: string;
@@ -15,6 +17,7 @@ interface GuessProps {
 
 export interface GameProps {
   id: string;
+  date: Date;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
   guess: null | GuessProps;
@@ -35,6 +38,8 @@ export function Game({
                      }: Props) {
   const { colors, sizes } = useTheme();
 
+  const when = dayjs(data.date).locale(ptBR).format('DD [de] MMMM [de] YYYY');
+
   return (
     <VStack
       w="full"
@@ -51,7 +56,7 @@ export function Game({
       </Text>
 
       <Text color="gray.200" fontSize="xs">
-        22 de Novembro de 2022 às 16:00h
+        {when}
       </Text>
 
       <HStack mt={4} w="full" justifyContent="space-between"
@@ -73,16 +78,16 @@ export function Game({
 
       {
         !data.guess &&
-          <Button size="xs" w="full" bgColor="green.500" mt={4}
-                  onPress={onGuessConfirm}>
-              <HStack alignItems="center">
-                  <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
-                      CONFIRMAR PALPITE
-                  </Text>
+        <Button size="xs" w="full" bgColor="green.500" mt={4}
+                onPress={onGuessConfirm}>
+          <HStack alignItems="center">
+            <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
+              CONFIRMAR PALPITE
+            </Text>
 
-                  <Check color={colors.white} size={sizes[4]}/>
-              </HStack>
-          </Button>
+            <Check color={colors.white} size={sizes[4]}/>
+          </HStack>
+        </Button>
       }
     </VStack>
   );
